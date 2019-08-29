@@ -1,0 +1,22 @@
+div.container
+{
+    margin-top: 20px;
+}
+
+div.adshow-title
+{
+    padding: 2em;
+    background-position: center;
+    background-size: cover;
+}
+
+div.adshow-title h1, div.adshow-title p
+{
+    color: white;
+    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+}
+
+div.carousel-caption
+{
+    text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
+}
