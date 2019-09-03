@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use Cocur\Slugify\Slugify;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -11,7 +11,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdRepository")
- * @ORM\HasLifecycleCallbacks
  * @UniqueEntity(
  *  fields={"title"},
  *  message="Une autre annonce possède déjà ce titre, merci de le modifier"
@@ -34,6 +33,7 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
      */
     private $slug;
 
@@ -71,26 +71,15 @@ class Ad
      */
     private $images;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="ads")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
-    }
-
-    /**
-     * Initialize the slug
-     *
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     * 
-     * @return void
-     */
-    public function initializeSlug()
-    {
-        if(empty($this->slug))
-        {
-            $slugify = new Slugify();
-            $this->slug = $slugify->slugify($this->title);
-        }
     }
 
     public function getId(): ?int
@@ -209,6 +198,18 @@ class Ad
                 $image->setAd(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
 
         return $this;
     }
