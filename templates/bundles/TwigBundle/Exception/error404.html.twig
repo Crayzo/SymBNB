@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non trouvée{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="display-1">Oups !</h1> 
+        <h2>La page que vous recherchez semble introuvable.</h1>
+        <p><strong>Code d'erreur : 404</strong></p>
+        <p>Désolé mais ce lien est introuvable ! Dirigez-vous vers la page d'accueil ou contactez-nous en cas de questions...</p>
+        <a href="{{ path('homepage') }}" class="btn btn-primary">Retour à la page l'accueil</a>
+        <a href="{{ path('ads_index') }}" class="btn btn-success">Nos annonces</a>
+    </div>
+{% endblock %}
