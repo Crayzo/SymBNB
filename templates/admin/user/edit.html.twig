@@ -1,0 +1,40 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Modifier l'utilisateur n°{{user.id}}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="py-5">Modifier l'utilisateur n°{{user.id}}</h1>
+        <div class="alert alert-light">
+            {{form_start(form)}}
+            <div class="row">
+                <div class="col">
+                    {{form_row(form.firstName)}}
+                    {{form_row(form.lastName)}}
+                    {{form_row(form.email)}} 
+                    {{form_row(form.picture)}}
+                </div>
+                <div class="col">
+                    {{form_widget(form)}}
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-check mr-2"></i>Enregistrer les modifications</button>
+                </div>
+            </div>
+            {{form_end(form)}}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        menubar: false,
+        toolbar: false,
+        branding: false,
+        plugins: "paste",
+        paste_as_text: true
+    });
+</script>
+
+{% endblock %}

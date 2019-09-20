@@ -1,0 +1,51 @@
+{% set route = app.request.attributes.get('_route') %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="{{ path('homepage') }}">SymBNB</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-tachometer-alt mr-2"></i>Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ route starts with 'admin_ads' ? 'active' }}" href="{{ path('admin_ads_index') }}"><i class="fas fa-bullhorn mr-2"></i>Annonces</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ route starts with 'admin_booking' ? 'active' }}" href="{{path('admin_booking_index')}}"><i class="fas fa-calendar-alt mr-2"></i>Réservations</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ route starts with 'admin_comment' ? 'active' }}" href="{{path('admin_comment_index')}}"><i class="fas fa-comments mr-2"></i>Commentaires</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ route starts with 'admin_user' ? 'active' }}" href="{{path('admin_user_index')}}"><i class="fas fa-users mr-2"></i>Utilisateurs</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item m-lg-auto">
+                <a href="{{path('homepage')}}" target="_blank" class="nav-link"><i class="fas fa-eye mr-2"></i>Voir le site</a>
+            </li>
+            {% if app.user %}
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" id="accountDropdownLink">
+                        <img src="{{app.user.picture}}" class="avatar avatar-mini mr-2" alt="Avatar de {{app.user.fullName}}">{{app.user.fullName}}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownLink">
+                        <a href="{{ path('admin_account_logout') }}" class="dropdown-item"><i class="fas fa-sign-out-alt mr-2"></i>Déconnexion</a>
+                    </div>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+{% for label, messages in app.flashes %}
+    <div class="container">
+        <div class="alert alert-{{ label }}">
+            {% for message in messages %}
+                <p class="m-auto">{{ message | raw }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}

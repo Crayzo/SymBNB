@@ -96,11 +96,20 @@ class AccountController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid())
-        {
-            $manager->persist($user);
-            $manager->flush();
+        {   
+            $countParagraphs = substr_count($form['description']->getData(), '<p>');
 
-            $this->addFlash('success', 'Votre compte a bien été mis à jour');
+            if($countParagraphs >= 11)
+            {
+                $this->addFlash('warning', 'Votre description est trop longue de ' . ($countParagraphs - 10) . ' ligne(s)');
+            }
+            else
+            {
+                $manager->persist($user);
+                $manager->flush();
+    
+                $this->addFlash('success', 'Votre compte a bien été mis à jour');
+            }
         }
 
         return $this->render('account/profile.html.twig', [

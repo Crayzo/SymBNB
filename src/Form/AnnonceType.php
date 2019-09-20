@@ -25,13 +25,6 @@ class AnnonceType extends ApplicationType
                 $this->getConfiguration('Titre', 'Titre de l\'annonce')
             )
             ->add(
-                'slug',
-                TextType::class,
-                $this->getConfiguration('Chaîne URL', 'Adresse web (automatique)', [
-                    'required' => false
-                ])
-            )
-            ->add(
                 'coverImage',
                 UrlType::class,
                 $this->getConfiguration('URL de l\'image principale', 'Donnez l\'adresse d\'une image qui donne vraiment envie')

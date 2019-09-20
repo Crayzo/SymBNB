@@ -1,3 +1,4 @@
+{% set route = app.request.attributes.get('_route') %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="{{ path('homepage') }}">SymBNB</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,10 +7,10 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('homepage') }}"><i class="fas fa-home mr-2"></i>Accueil</a>
+                <a class="nav-link {{ route == 'homepage' ? 'active' }}" href="{{ path('homepage') }}"><i class="fas fa-home mr-2"></i>Accueil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ path('ads_index') }}"><i class="fas fa-bullhorn mr-2"></i>Annonces</a>
+                <a class="nav-link {{ route starts with 'ads' ? 'active' }}" href="{{ path('ads_index') }}"><i class="fas fa-bullhorn mr-2"></i>Annonces</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
@@ -30,10 +31,10 @@
                 </li>
             {% else %}
                 <li class="nav-item">
-                    <a href="{{ path('account_register') }}" class="nav-link"><i class="fas fa-user-plus mr-2"></i>Inscription</a>
+                    <a href="{{ path('account_register') }}" class="nav-link {{ route == 'account_register' ? 'active' }}"><i class="fas fa-user-plus mr-2"></i>Inscription</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ path('account_login') }}" class="nav-link"><i class="fas fa-sign-in-alt mr-2"></i>Connexion</a>
+                    <a href="{{ path('account_login') }}" class="nav-link {{ route == 'account_login' ? 'active' }}"><i class="fas fa-sign-in-alt mr-2"></i>Connexion</a>
                 </li>
             {% endif %}
         </ul>
