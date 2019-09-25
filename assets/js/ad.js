@@ -3,8 +3,6 @@ $('#add-image').click(function()
     // I retrieve the number of future fields that I will create
     const index =+ $('#widgets-counter').val();
 
-    console.log(index);
-
     // I get the prototype of the entries
     const tmpl = $('#annonce_images').data('prototype').replace(/__name__/g, index);
 

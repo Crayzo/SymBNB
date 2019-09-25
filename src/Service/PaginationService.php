@@ -120,7 +120,7 @@ class PaginationService
      * 
      * @return int
      */
-    public function getPages(): int 
+    public function getPages()
     {
         if(empty($this->entityClass)) 
         {
@@ -280,6 +280,6 @@ class PaginationService
      */
     public function getRoute(): string 
     {
-        return $route;
+        return $this->route;
     }
 }

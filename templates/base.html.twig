@@ -5,8 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SymBNB - {% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,700">
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/css/app.css">
+        {{ encore_entry_link_tags('css/app') }}
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -15,10 +14,7 @@
         {% include '/partials/footer.html.twig' %}
         <script src="https://kit.fontawesome.com/79292a4c58.js"></script>
         <script src="https://cdn.tiny.cloud/1/0ymxvkk8uy5skowdciteng030bzu94w3024imvbtq9xgrrqz/tinymce/5/tinymce.min.js"></script>
-        <script src="/js/jquery.min.js"></script>
-        <script src="/js/popper.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
-        <script src="/js/main.js"></script>
+        {{ encore_entry_script_tags('js/app') }}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
