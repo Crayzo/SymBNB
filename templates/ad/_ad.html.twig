@@ -1,6 +1,6 @@
 {% set url = path('ads_show', {'slug': ad.slug}) %}
-<div class="col-md-4">
-    <div class="card bg-light mb-3">
+<div class="col-md-4 mb-3">
+    <div class="card bg-light h-100">
         <div class="card-header text-center">
             {{ ad.rooms }} chambres, <strong>{{ ad.price|number_format(2, ',', ' ') }}&euro; par nuit</strong><br>
             {% if ad.comments|length > 0 %}
@@ -12,15 +12,17 @@
         <a href="{{ url }}">
             <img src="{{ ad.coverImage }}" alt="Image de l'appartement" style="height: 200px; width: 100%; display: block">
         </a>
-        <div class="card-body text-center">
+        <div class="card-body text-center d-flex justify-content-between flex-column">
             <h4 class="card-title">
                 <a href="{{ url }}" class="text-reset">{{ ad.title }}</a>
             </h4>
             <p class="card-text">{{ ad.introduction }}</p>
-            <a href="{{ url }}" class="btn btn-dark">En savoir plus</a>
-            {% if app.user and app.user ==  ad.author %}
-                <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary">Modifier l'annonce</a>
-            {% endif %}
+            <div>
+                <a href="{{ url }}" class="btn btn-dark">En savoir plus</a>
+                {% if app.user and app.user ==  ad.author %}
+                    <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-secondary mt-1">Modifier l'annonce</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>

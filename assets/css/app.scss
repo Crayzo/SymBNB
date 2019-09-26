@@ -107,10 +107,36 @@ footer
     color: white;
 }
 
+div.col
+{
+    span.rating
+    {
+        display: flex;
+        justify-content: center;
+        margin: 10px 0;
+    }
+}
+
 @media screen and (max-width: 768px)
 {
     .display-3
     {
         font-size: 2.5em;
+    }
+
+    div.adshow-title
+    {
+        display: flex;
+        align-items: center;
+
+        h1
+        {
+            font-size: 20px;
+        }
+
+        p.h2
+        {
+            font-size: 13px;
+        }
     }
 }
