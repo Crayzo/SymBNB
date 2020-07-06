@@ -53,8 +53,8 @@
             $('#booking_startDate, #booking_endDate').on('change', calculateAmount);
         });
 
-         function calculateAmount()
-         {
+        function calculateAmount()
+        {
             const endDate = new Date($('#booking_endDate').val().replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$2-$1'));
             const startDate = new Date($('#booking_startDate').val().replace(/(\d+)\/(\d+)\/(\d{4})/, '$3-$2-$1'));
 
@@ -68,7 +68,8 @@
 
                 $('#days').text(days);
                 $('#amount').text(amount.toLocaleString('fr-FR'));
-            }
-         }
+        }
+
+    }
     </script>
 {% endblock %}

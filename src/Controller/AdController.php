@@ -6,7 +6,7 @@ use App\Entity\Ad;
 use App\Form\AnnonceType;
 use App\Repository\AdRepository;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -35,7 +35,7 @@ class AdController extends AbstractController
      * 
      * @return Response
      */
-    public function create(Request $request, ObjectManager $manager)
+    public function create(Request $request, EntityManagerInterface $manager)
     {
         $ad = new Ad();
 
@@ -76,7 +76,7 @@ class AdController extends AbstractController
      * 
      * @return Response
      */
-    public function edit(Ad $ad, Request $request, ObjectManager $manager)
+    public function edit(Ad $ad, Request $request, EntityManagerInterface $manager)
     {
         $form = $this->createForm(AnnonceType::class, $ad);
 
@@ -127,10 +127,10 @@ class AdController extends AbstractController
      * @Security("is_granted('ROLE_USER') and user == ad.getAuthor()", message="Vous n'avez pas le droit d'accéder à cette ressource")
      *
      * @param Ad $ad
-     * @param ObjectManager $manager
+     * @param EntityManagerInterface $manager
      * @return Response
      */
-    public function delete(Ad $ad, ObjectManager $manager)
+    public function delete(Ad $ad, EntityManagerInterface $manager)
     {
         $manager->remove($ad);
         $manager->flush();

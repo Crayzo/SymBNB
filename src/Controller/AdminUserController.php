@@ -6,7 +6,7 @@ use App\Entity\User;
 use App\Form\AdminUserType;
 use App\Service\PaginationService;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -42,7 +42,7 @@ class AdminUserController extends AbstractController
      * @param ObjectManager $manager
      * @return Response
      */
-    public function edit(User $user, Request $request, ObjectManager $manager)
+    public function edit(User $user, Request $request, EntityManagerInterface $manager)
     {
         $form = $this->createForm(AdminUserType::class, $user);
 
@@ -71,7 +71,7 @@ class AdminUserController extends AbstractController
      * @param ObjectManager $manager
      * @return Response
      */
-    public function delete(User $user, ObjectManager $manager)
+    public function delete(User $user, EntityManagerInterface $manager)
     {
         if(count($user->getAds()) > 0)
         {
